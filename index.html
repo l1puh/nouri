@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#101411">
+
+    <title>Nutrition</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+
+<div class="app">
+
+
+<header class="header">
+    <div>
+        <p class="eyebrow">ТВОЙ ДНЕВНИК ПИТАНИЯ</p>
+        <h1 class="brand-name">Nouri<span>.</span></h1>
+        <p class="muted">Питайся осознанно. Живи активно.</p>
+    </div>
+
+    <button class="avatar" data-page="profile">👤</button>
+</header>
+
+
+    <!-- ГЛАВНАЯ -->
+    <section class="page active" id="home">
+
+        <div class="card main-card">
+            <div class="section-heading">
+                <div>
+                    <p class="muted">Записано сегодня</p>
+                    <h2 id="total-calories">0 <span>ккал</span></h2>
+                </div>
+                <div class="calorie-icon">🔥</div>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="calorie-progress"></div>
+            </div>
+
+            <p class="small muted" id="food-count">Пока нет добавленных продуктов</p>
+        </div>
+
+        <div class="section-title">
+            <h3>Пищевая ценность</h3>
+            <span class="muted small">За сегодня</span>
+        </div>
+
+        <div class="macro-grid">
+            <div class="card macro-card">
+                <span class="macro-icon protein">●</span>
+                <p class="muted">Белки</p>
+                <strong id="total-protein">0 г</strong>
+            </div>
+
+            <div class="card macro-card">
+                <span class="macro-icon fats">●</span>
+                <p class="muted">Жиры</p>
+                <strong id="total-fat">0 г</strong>
+            </div>
+
+            <div class="card macro-card">
+                <span class="macro-icon carbs">●</span>
+                <p class="muted">Углеводы</p>
+                <strong id="total-carbs">0 г</strong>
+            </div>
+        </div>
+
+        <div class="section-title">
+            <h3>Сегодня в дневнике</h3>
+            <button class="text-button" data-page="diary">Весь дневник →</button>
+        </div>
+
+        <div id="home-meals"></div>
+
+        <button class="primary-button add-main" id="open-modal">
+            + Добавить продукт
+        </button>
+
+    </section>
+
+
+    <!-- ДНЕВНИК -->
+    <section class="page" id="diary">
+
+        <div class="page-heading">
+            <h2>Дневник питания</h2>
+            <p class="muted">Все твои приёмы пищи за сегодня</p>
+        </div>
+
+        <div id="diary-meals"></div>
+
+        <button class="primary-button" id="open-modal-diary">
+            + Добавить продукт
+        </button>
+
+    </section>
+
+
+    <!-- СТАТИСТИКА -->
+    <section class="page" id="stats">
+
+        <div class="page-heading">
+            <h2>Статистика</h2>
+            <p class="muted">Сводка твоего питания</p>
+        </div>
+
+        <div class="card stats-card">
+            <p class="muted">Всего записано сегодня</p>
+            <h2 id="stats-calories">0 ккал</h2>
+            <div class="divider"></div>
+
+            <div class="stats-row">
+                <span>Белки</span>
+                <strong id="stats-protein">0 г</strong>
+            </div>
+
+            <div class="stats-row">
+                <span>Жиры</span>
+                <strong id="stats-fat">0 г</strong>
+            </div>
+
+            <div class="stats-row">
+                <span>Углеводы</span>
+                <strong id="stats-carbs">0 г</strong>
+            </div>
+        </div>
+
+        <div class="card info-card">
+            <span>💡</span>
+            <div>
+                <strong>Маленький совет</strong>
+                <p class="muted">Регулярно записывай приёмы пищи, чтобы лучше понимать свои привычки питания.</p>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- ПРОФИЛЬ -->
+    <section class="page" id="profile">
+
+        <div class="page-heading">
+            <h2>Профиль</h2>
+            <p class="muted">Настройки приложения</p>
+        </div>
+
+        <div class="card profile-card">
+            <div class="profile-avatar">👤</div>
+            <div>
+                <h3 id="profile-name">Пользователь</h3>
+                <p class="muted small">Участник Nutrition</p>
+            </div>
+        </div>
+
+        <div class="card settings-card">
+            <div class="settings-row">
+                <span>🌙 Оформление</span>
+                <strong>Тёмное</strong>
+            </div>
+
+            <div class="settings-row">
+                <span>📅 История питания</span>
+                <strong>Сегодня</strong>
+            </div>
+
+            <div class="settings-row">
+                <span>⚙️ Версия приложения</span>
+                <strong>0.1.0</strong>
+            </div>
+        </div>
+
+    </section>
+
+
+    <!-- НИЖНЯЯ НАВИГАЦИЯ -->
+    <nav class="bottom-nav">
+
+        <button class="nav-button active" data-page="home">
+            <span>⌂</span>
+            <small>Главная</small>
+        </button>
+
+        <button class="nav-button" data-page="diary">
+            <span>▤</span>
+            <small>Дневник</small>
+        </button>
+
+        <button class="nav-button" data-page="stats">
+            <span>▥</span>
+            <small>Статистика</small>
+        </button>
+
+        <button class="nav-button" data-page="profile">
+            <span>♙</span>
+            <small>Профиль</small>
+        </button>
+
+    </nav>
+
+</div>
+
+
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div class="modal-overlay" id="modal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+            <div>
+                <h2>Добавить продукт</h2>
+                <p class="muted small">Заполни пищевую ценность</p>
+            </div>
+
+            <button class="close-button" id="close-modal">✕</button>
+        </div>
+
+        <form id="food-form">
+
+            <label for="food-name">Название продукта</label>
+            <input id="food-name" type="text" placeholder="Например, курица" required maxlength="60">
+
+            <label for="food-meal">Приём пищи</label>
+            <select id="food-meal">
+                <option value="Завтрак">Завтрак</option>
+                <option value="Обед">Обед</option>
+                <option value="Ужин">Ужин</option>
+                <option value="Перекус">Перекус</option>
+            </select>
+
+            <label for="food-calories">Калорийность (ккал)</label>
+            <input id="food-calories" type="number" min="0" max="10000" step="0.1" placeholder="Например, 165" required>
+
+            <div class="form-grid">
+                <div>
+                    <label for="food-protein">Белки (г)</label>
+                    <input id="food-protein" type="number" min="0" max="1000" step="0.1" placeholder="0" required>
+                </div>
+
+                <div>
+                    <label for="food-fat">Жиры (г)</label>
+                    <input id="food-fat" type="number" min="0" max="1000" step="0.1" placeholder="0" required>
+                </div>
+
+                <div>
+                    <label for="food-carbs">Углеводы (г)</label>
+                    <input id="food-carbs" type="number" min="0" max="1000" step="0.1" placeholder="0" required>
+                </div>
+            </div>
+
+            <button class="primary-button submit-button" type="submit">
+                Добавить в дневник
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
